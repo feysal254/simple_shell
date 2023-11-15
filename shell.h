@@ -6,9 +6,16 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <limits.h>
+#include <fcntl.h>
+#include <errno.h>
 
 /* buffers */
 #define BUF_SIZE 1024
+#define WRITE_BUF_SIZE 1024
+#define BUF_FLASH -1
 
 /**
  * struct info - Contains all the arguments needed
