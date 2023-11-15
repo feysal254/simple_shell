@@ -1,28 +1,31 @@
 #include "shell.h"
 
 /**
- * _exit - exits the shell
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: exits with a given exit status
- *         
+ * exit_shell - exits the shell
+ *
+ * @datash: data relevant (status and args)
+ * Return: 0 on success.
  */
-int _exit(info_t *info)
+int exit_shell(data_shell *datash)
 {
-	int exitcheck;
+	unsigned int ustatus;
+	int is_digit;
+	int str_len;
+	int big_number;
 
-	if (info->argv[1])  /* If there is an exit arguement */
+	if (datash->args[1] != NULL)
 	{
-		exitcheck = _erratoi(info->argv[1]);
-		if (exitcheck == -1)
+		ustatus = _atoi(datash->args[1]);
+		is_digit = _isdigit(datash->args[1]);
+		str_len = _strlen(datash->args[1]);
+		big_number = ustatus > (unsigned int)INT_MAX;
+		if (!is_digit || str_len > 10 || big_number)
 		{
-			info->status = 2;
-			print_error(info, "Illegal number: ");
-			_eputs(info->argv[1]);
-			_eputchar('\n');
+			get_error(datash, 2);
+			datash->status = 2;
 			return (1);
 		}
-		info->err_num = _erratoi(info->argv[1]);
-		return (-2);
+		datash->status = (ustatus % 256);
 	}
-	info->err_num = -1;
+	return (0);
+}
