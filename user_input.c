@@ -18,7 +18,8 @@ void user_input(char *command, size_t size)
 
 	if (nbytes == 0)
 	{
-		exit(-1);
+		printf("\n");
+		exit(1);
 	}
 
 	command[strcspn(command, "\n")] = '\0';

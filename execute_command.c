@@ -22,9 +22,11 @@ void execute_command(const char *command)
 		args[0] = strdup(command);
 		args[1] = NULL;
 
-		execve(command, args, NULL);
-		perror("execve");
-		exit(1);
+		if (execve(command, args, NULL) == -1)
+		{
+			perror("execve");
+			exit(1);
+		}
 	}
 	else
 	{
