@@ -13,6 +13,7 @@ int main(void)
 		display_prompt();
 		user_input(command, sizeof(command));
 		execute_command(command);
+		tokenize_command(command);
 	}
 
 	return (0);
