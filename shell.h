@@ -1,7 +1,6 @@
 #ifndef SHELL_H
 #define SHELL_H
 extern char **environ;
-#include <sys/wait>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
