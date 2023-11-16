@@ -1,14 +1,12 @@
 #include "shell.h"
 
 /**
-  * print_env - prints environment variables.
-  * Return: nothing.
-  */
-void print_environ(void)
+ * _myenv - prints the current environment
+ *           function prototype.
+ * Return: Always 0
+ */
+int _myenv(info_t *info)
 {
-	int i;
-
-	i = 0;
-	while (environ[i])
-		printf("%s\n", environ[i++]);
+	print_list_str(info->env);
+	return (0);
 }
